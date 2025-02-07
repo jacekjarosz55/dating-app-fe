@@ -4,9 +4,74 @@
 :root {
   --main-bg: hsl(350deg 30% 20%);
   --main-fg: hsl(350deg 30% 80%);
+  --main-fg-bright: hsl(350deg 30% 90%);
+  --danger: hsl(0deg 80% 80%);
+  color-scheme: dark;
+  --radius: 10px;
+  --font-family: "Inter", sans-serif;
 }
 body {
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-family);
   background-color: var(--main-bg);
   color: var(--main-fg);
+}
+
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+input {
+  appearance: none;
+  border: 2px solid;
+  background: var(--main-bg);
+  color: var(--main-fg);
+  font-family: var(--font-family);
+  border-radius: var(--radius);
+  padding: 0.2rem 1rem;
+}
+
+button, .link-button {
+  appearance: none;
+  display: inline-block;
+  border-radius: var(--radius);
+  border: none;
+  padding: 0.2rem 1rem;
+  font-family: var(--font-family);
+  font-weight: bold;
+  text-decoration: none;
+  color: var(--main-bg);
+  background-color: var(--main-fg);
+  text-align: center;
+  border: 2px solid var(--main-fg);
+}
+
+button.secondary, .link-button.secondary {
+  border: 2px solid;
+  color: var(--main-fg);
+  background: var(--main-bg);
+}
+
+button.secondary:hover, .link-button.secondary:hover {
+
+  color: var(--main-fg-bright);
+  border-color: var(--main-fg-bright);
+  background: var(--main-bg);
+}
+
+
+button:hover, .link-button:hover {
+  background-color: var(--main-fg-bright);
+  border-color: var(--main-fg-bright);
+}
+
+.error {
+  color: var(--danger);
 }

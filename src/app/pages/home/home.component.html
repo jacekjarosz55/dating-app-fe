@@ -1,0 +1,22 @@
+<p>home works!</p>
+
+@if(userInfo$ | async; as userInfo) {
+<h2>Your user info: </h2>
+<p>{{userInfo | json}}</p>
+}
+@else {
+  <p>Loading user info...</p>
+}
+
+@if(users$ | async; as users) {
+<h2>All users info: </h2>
+@for(user of users; track user.id) {
+<p>{{ user | json }} </p>
+}
+}
+@else {
+  <p>Loading users...</p>
+}
+
+
+

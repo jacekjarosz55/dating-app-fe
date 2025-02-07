@@ -1,18 +1,27 @@
 import { Component, inject } from '@angular/core';
-import { UserService } from '../../services/user.service';
-import { AsyncPipe } from '@angular/common';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-welcome',
   standalone: true,
-  imports: [AsyncPipe],
+  imports: [RouterLink],
   templateUrl: './welcome.component.html',
   styleUrl: './welcome.component.css'
 })
 export class WelcomeComponent {
-  private userService = inject(UserService);
-  readonly users$ = this.userService.getUsers();
+  private authService = inject(AuthService);
+  private router = inject(Router);
+  constructor() {
 
+    const token = this.authService.getToken();
 
+    token.pipe(takeUntilDestroyed()).subscribe(token => {
+    if(token) {
+      this.router.navigate(["/", "home"]);
+    }
+    })
 
+  }
 }

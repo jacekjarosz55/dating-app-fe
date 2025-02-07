@@ -4,7 +4,6 @@ import { AuthService } from '../services/auth.service';
 
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-  console.log("[AuthInterceptor] processing new request");
   const tokenValue = inject(AuthService).tokenValue();
 
   if(tokenValue == null) {
