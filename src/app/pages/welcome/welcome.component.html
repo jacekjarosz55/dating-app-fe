@@ -1,0 +1,8 @@
+<p>Welcome to the Dating App!</p>
+
+<h2>Users:</h2>
+<ul>
+  @for(user of (users$ | async); track user.id) {
+    <li>{{user.firstName}} {{user.lastName}}</li>
+  }
+</ul>
