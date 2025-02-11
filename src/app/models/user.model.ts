@@ -1,3 +1,5 @@
+import { Hobby } from "./hobby.model";
+
 export interface User {
     id: string;
     firstName: string;
@@ -5,5 +7,8 @@ export interface User {
     email: string;
     username: string;
     profilePicture: string;
+
+    hobbies: Hobby[];
+
     //private password: string;
 }

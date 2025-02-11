@@ -26,4 +26,8 @@ export class UserService {
     return this.users$.asObservable();
   }
 
+  getUser(id: string): Observable<User>  {
+    return this.http.get<User>(`http://localhost:8008/users/${id}`)
+  }
+
 }

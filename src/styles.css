@@ -1,19 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
 
 
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-Regular.ttf");
+}
+
 :root {
-  --main-bg: hsl(350deg 30% 20%);
-  --main-fg: hsl(350deg 30% 80%);
-  --main-fg-bright: hsl(350deg 30% 90%);
-  --danger: hsl(0deg 80% 80%);
-  color-scheme: dark;
+  --main-bg: hsl(0deg 0% 95%);
+  --main-fg: hsl(180deg 20% 20%);
+  --main-fg-bright: hsl(180deg 20% 50%);
+  --danger: hsl(0deg 60% 60%);
+  --success: hsl(100deg 60% 60%);
   --radius: 10px;
-  --font-family: "Inter", sans-serif;
+  --font-family: "Poppins", sans-serif;
+  color-scheme: light;
 }
 body {
   font-family: var(--font-family);
   background-color: var(--main-bg);
   color: var(--main-fg);
+  padding: 0;
+  margin: 0;
 }
 
 
@@ -26,6 +34,12 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.5em;
+}
+
+.user-photo {
+  height: 256px;
+  width: 256px;
+  display: block;
 }
 
 input {
@@ -70,8 +84,30 @@ button.secondary:hover, .link-button.secondary:hover {
 button:hover, .link-button:hover {
   background-color: var(--main-fg-bright);
   border-color: var(--main-fg-bright);
+  color: var(--main-bg);
 }
 
 .error {
   color: var(--danger);
 }
+
+a {
+  color: var(--main-fg);
+  text-decoration: underline;
+}
+
+a:hover {
+  color: var(--main-fg-bright);
+}
+
+
+
+
+button[disabled] {
+  opacity: 0.5;
+}
+button[disabled]:hover {
+  background-color: var(--main-fg);
+  border-color: var(--main-fg);
+}
+

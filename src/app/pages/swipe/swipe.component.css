@@ -1,0 +1,43 @@
+app-swipe, :host {
+  display: grid;
+  flex-grow: 1;
+  grid-template-columns: auto 1fr auto;
+}
+
+.swipe-action {
+  padding: 3em;
+  display: block;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  border-radius: 0;
+  letter-spacing: 0.5em;
+  border: none;
+  cursor: pointer;
+  transition: padding 0.5s, letter-spacing 0.5s;
+}
+
+.swipe-action:hover {
+  letter-spacing: 1em;
+  padding: 4em;
+}
+
+.hot {
+  background-color: var(--success);
+}
+.not {
+  background-color: var(--danger);
+}
+
+
+.user-info {
+  display: grid;
+  grid-template-columns: 4fr 8fr;
+  padding: 1em;
+  gap: 0.5em;
+}
+
+.all-message {
+  padding: 4em;
+  grid-column: 1 / -1;
+  text-align: center;
+}

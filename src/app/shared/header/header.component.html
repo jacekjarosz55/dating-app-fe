@@ -1,0 +1,8 @@
+<header>
+  <a routerLink="/">
+    <h1>Dating app</h1>
+  </a>
+  @if(token$ | async) {
+  <button class="secondary" (click)="onLogoutButtonClick()">Wyloguj się</button>
+  }
+</header>

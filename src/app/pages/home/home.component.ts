@@ -2,11 +2,12 @@ import { Component, inject } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { AsyncPipe, JsonPipe } from '@angular/common';
 import { UserService } from '../../services/user.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [AsyncPipe, JsonPipe],
+  imports: [AsyncPipe, JsonPipe, RouterLink],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

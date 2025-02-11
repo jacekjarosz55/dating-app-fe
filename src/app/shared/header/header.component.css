@@ -1,0 +1,16 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+  border-bottom: 2px solid;
+}
+
+header a {
+  text-decoration: none;
+  display: block;
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
+}

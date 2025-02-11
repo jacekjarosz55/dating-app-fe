@@ -1,3 +1,4 @@
+<h2>Logowanie</h2>
 <form class="login-form form" [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
   @if(error) {
     <p class="error" style="text-align: center;">{{error}}</p>
@@ -24,5 +25,5 @@
       formControlName="password"
     >
   </div>
-  <button class="button-primary" style="align-self: center; font-size: 1em;" type="submit">Zaloguj</button>
+  <button class="button-primary" style="align-self: center; font-size: 1em;" type="submit" [disabled]="this.loginForm.invalid">Zaloguj</button>
 </form>
