@@ -1,1 +1,89 @@
-<p>signup works!</p>
+<h2>Załóż konto</h2>
+<form class="signup-form form" [formGroup]="signupForm" (ngSubmit)="onSubmit(signupForm)">
+  @if(error) {
+    <p class="error" style="text-align: center;">{{error}}</p>
+  }
+
+  <div class="form-group">
+    <label for="usernameInput">
+        Login:
+    </label>
+    <input
+      type="text"
+      id="usernameInput"
+      name="username"
+      formControlName="username"
+    >
+  </div>
+
+  <div class="form-group">
+    <label for="firstNameInput">
+        Imię:
+    </label>
+    <input
+      type="text"
+      id="firstNameInput"
+      name="firstName"
+      formControlName="firstName"
+    >
+  </div>
+
+  <div class="form-group">
+    <label for="lastNameInput">
+        Nazwisko:
+    </label>
+    <input
+      type="text"
+      id="lastNameInput"
+      name="lastName"
+      formControlName="lastName"
+    >
+  </div>
+
+  <div class="form-group">
+    <label for="fbLinkInput">
+        Link do FB:
+    </label>
+    <input
+      type="text"
+      id="fbLinkInput"
+      name="fbLink"
+      formControlName="fbLink"
+    >
+  </div>
+
+  <div class="form-group">
+    <label for="profilePictureInput">
+        Link do zdj. profilowego:
+    </label>
+    <input
+      type="text"
+      id="profilePictureInput"
+      name="profilePicture"
+      formControlName="profilePicture"
+    >
+  </div>
+
+  <div class="form-group">
+    <label for="passwordInput">
+        Hasło:
+    </label>
+    <input
+      type="password"
+      id="passwordInput"
+      name="password"
+      formControlName="password"
+    >
+  </div>
+
+  <!-- hobbies here -->
+  <div class="form-group">
+    <ul>
+      @for(hobby of (hobbies$ | async); track hobby.id) {
+        <li>{{hobby.name}}</li>
+      }
+    </ul>
+  </div>
+
+  <button class="button-primary" style="align-self: center; font-size: 1em;" type="submit" [disabled]="this.signupForm.invalid">Stwórz konto!</button>
+</form>

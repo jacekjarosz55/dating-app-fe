@@ -7,8 +7,6 @@ export interface User {
     email: string;
     username: string;
     profilePicture: string;
-
     hobbies: Hobby[];
-
     //private password: string;
 }
