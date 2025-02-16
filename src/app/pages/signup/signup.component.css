@@ -13,6 +13,7 @@ h2 {
   margin: 0;
   padding: 0rem;
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
 }
 

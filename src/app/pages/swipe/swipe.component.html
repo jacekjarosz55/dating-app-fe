@@ -1,6 +1,7 @@
 
-@if (! allViewed()) {
-@if ((currentUser$() | async); as user) {
+@if (!allViewed()) {
+@if ((currentUser$ | async); as user) {
+@let commonInfo = commonHobbies$ | async;
 <button (click)="onNotClicked()" class="swipe-action not">
   NOT
 </button>
@@ -10,10 +11,10 @@
 
     <img class="user-photo" alt="zdjęcie użytkownika" height="200" width="200" [src]="user.profilePicture" src-fallback="/missing.png">
 
-    <h3>Wasza zgodność: 00%</h3>
+    <h3>Wasza zgodność jest na poziomie: {{commonInfo?.similarityLevel}}</h3>
     <h3>Wspólne zainteresowania:</h3>
     <ul>
-      @for(hobby of user.hobbies; track hobby.id) {
+      @for(hobby of commonInfo?.similarHobbies; track hobby.id) {
       <li>{{hobby.name}}</li>
       }
     </ul>

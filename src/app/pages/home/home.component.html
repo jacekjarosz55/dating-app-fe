@@ -1,23 +1,11 @@
-<p>home works!</p>
-
-@if(userInfo$ | async; as userInfo) {
-<h2>Your user info: </h2>
-<p>{{userInfo | json}}</p>
-}
-@else {
-  <p>Loading user info...</p>
-}
-
-@if(users$ | async; as users) {
-<h2>All users info: </h2>
-@for(user of users; track user.id) {
-<p>{{ user | json }} </p>
-}
-}
-@else {
-  <p>Loading users...</p>
-}
-
-<a routerLink="/swipe">go to swipe</a>
+<div style="text-align: center; padding: 1em">
+  <h2>Witaj!</h2>
+  <p>
+   <a style="font-size: 1.5em" routerLink="/swipe" class="link-button">Szukaj miłości!</a>
+  </p>
+  <p>
+    <a routerLink="/liked" class="link-button secondary">Poznane osoby</a>
+  </p>
+</div>
 
 

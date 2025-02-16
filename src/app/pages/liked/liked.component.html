@@ -1,15 +1,54 @@
 <div style="padding: 1em;">
   @if(related$ | async; as related) {
-  <h2>Match</h2>
+  <h2>Pasujący:</h2>
   <div class="users-grid">
-    @for (user of related.matched; track user.id) {
+    @for (pair of related.matched; track pair.pairId) {
+    @let otherUser = pair.firstUser.id == currentUser?.id ? pair.firstUser : pair.secondUser;
     <div class="user-short-info">
-      <button class="secondary" style="margin-bottom: 0.5em">usuń</button>
-      <img [src]="user.profilePicture" src-fallback="/missing.png" width="200" height="200" alt="user photo">
-      <h3>{{user.firstName + ' ' + user.lastName}}</h3>
-      <a [href]="user.facebookUrl">Link do FB</a>
+      <button class="secondary" style="margin-bottom: 0.5em" (click)="reject(pair)">odrzuć</button>
+      <img [src]="otherUser.profilePicture" src-fallback="/missing.png" width="200" height="200" alt="user photo">
+      <h3>{{otherUser.firstName + ' ' + otherUser.lastName}}</h3>
+      <a [href]="otherUser.facebookUrl">Link do FB</a>
     </div>
+    } @empty {
+        <p>Pusto!</p>
     }
   </div>
+
+
+  <h2>Oczekujesz na:</h2>
+  <div class="users-grid">
+    @for (pair of related.awaitingFor; track pair.pairId) {
+    @let otherUser = pair.firstUser.id == currentUser?.id ? pair.secondUser : pair.firstUser;
+    <div class="user-short-info">
+      <button class="secondary" style="margin-bottom: 0.5em" (click)="reject(pair)">odrzuć</button>
+      <img [src]="otherUser.profilePicture" src-fallback="/missing.png" width="200" height="200" alt="user photo">
+      <h3>{{otherUser.firstName + ' ' + otherUser.lastName}}</h3>
+      <a [href]="otherUser.facebookUrl">Link do FB</a>
+    </div>
+    } @empty {
+        <p>Pusto!</p>
+    }
+  </div>
+
+
+  <h2>Oczekują na ciebie:</h2>
+  <div class="users-grid">
+    @for (pair of related.acceptedFrom; track pair.pairId) {
+    @let otherUser = pair.firstUser.id == currentUser?.id ? pair.firstUser : pair.secondUser;
+    <div class="user-short-info">
+          <div style="display: flex; gap: 0.5em">
+            <button class="secondary" style="margin-bottom: 0.5em" (click)="reject(pair)">odrzuć</button>
+            <button style="margin-bottom: 0.5em" (click)="accept(pair)">akceptuj</button>
+          </div>
+      <img [src]="otherUser.profilePicture" src-fallback="/missing.png" width="200" height="200" alt="user photo">
+      <h3>{{otherUser.firstName + ' ' + otherUser.lastName}}</h3>
+      <a [href]="otherUser.facebookUrl">Link do FB</a>
+    </div>
+    } @empty {
+        <p>Pusto!</p>
+    }
+  </div>
+
   }
 </div>

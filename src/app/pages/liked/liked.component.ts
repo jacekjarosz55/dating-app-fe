@@ -1,11 +1,11 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { UserService } from '../../services/user.service';
 import { AsyncPipe } from '@angular/common';
 import { ImgFallbackModule } from 'ngx-img-fallback';
 import { User } from '../../models/user.model';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { PairService, RelatedPairs } from '../../services/pair.service';
 import { AuthService } from '../../services/auth.service';
+import { Pair } from '../../models/pair.model';
 
 @Component({
   selector: 'app-liked',
@@ -15,22 +15,35 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './liked.component.css'
 })
 export class LikedComponent implements OnInit {
-  ngOnInit(): void {
-    this.updateUsers();
-  }
-
-
-  updateUsers() {
-    this.authService.getUserInfo().subscribe(user => {
-      this.pairService.getRelated(user?.id ?? "").subscribe(related => {
-        this.related$.next(related);
-      })
-    });
-  }
 
   private authService = inject(AuthService);
   private pairService = inject(PairService);
+
+  ngOnInit(): void {
+    this.authService.getUserInfo().subscribe(user => {
+      this.currentUser = user;
+      this.updateUsers();
+    });
+  }
+
+  currentUser: User | null = null;
   related$ = new BehaviorSubject<RelatedPairs | null>(null);
 
+  updateUsers() {
+    this.pairService.getRelated(this.currentUser?.id ?? "").subscribe(related => {
+      this.related$.next(related);
+    });
+  }
+
+  reject(pair: Pair) {
+    this.pairService.setPairStatus(this.currentUser?.id ?? "",  pair.pairId, "REJECTED").subscribe(() => {
+      this.updateUsers();
+    });
+  }
+  accept(pair: Pair) {
+    this.pairService.setPairStatus(this.currentUser?.id ?? "",  pair.pairId, "ACCEPTED").subscribe(() => {
+      this.updateUsers();
+    });
+  }
 
 }
