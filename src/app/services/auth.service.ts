@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, of, switchMap, tap, map } from 'rxjs';
 import { User } from '../models/user.model';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
+import { RegisterUserDto } from '../models/register.dto';
 
 interface TokenInfo {
   token: string;
@@ -70,6 +71,11 @@ export class AuthService {
         });
     }));
   }
+
+  signup(data: RegisterUserDto) {
+    return this.http.post<RegisterUserDto>("http://localhost:8008/auth/signup", data).pipe(switchMap(() => this.login(data.username, data.password)));
+  }
+
 
   getUserInfo(): Observable<User | null> {
     return this.userInfo$;

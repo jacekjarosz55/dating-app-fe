@@ -33,7 +33,7 @@ app-swipe, :host {
   display: grid;
   grid-template-columns: 4fr 8fr;
   padding: 1em;
-  gap: 0.5em;
+  gap: 1em;
 }
 
 .all-message {

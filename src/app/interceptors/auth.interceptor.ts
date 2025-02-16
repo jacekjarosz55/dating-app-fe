@@ -16,10 +16,10 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
   return next(req.clone({
     setHeaders: {"Authorization": `Bearer ${tokenValue}`}
-  })).pipe(catchError((err: HttpErrorResponse, caught) => {
+  })).pipe(catchError((err, caught) => {
       if (err.status == 401) {
         authService.logout();
       }
-      return caught;
+      throw err;
   }));
 };

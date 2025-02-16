@@ -1,15 +1,15 @@
 
 @if (! allViewed()) {
-@let users = users$ | async;
-@if (users && usersLength() > 0) {
-@let user = users[userIdx()];
+@if ((currentUser$() | async); as user) {
 <button (click)="onNotClicked()" class="swipe-action not">
   NOT
 </button>
 <div class="user-info">
 
   <div class="left">
-    <img class="user-photo" alt="zdjęcie użytkownika" height="256" width="256" [src]="user.profilePicture">
+
+    <img class="user-photo" alt="zdjęcie użytkownika" height="200" width="200" [src]="user.profilePicture" src-fallback="/missing.png">
+
     <h3>Wasza zgodność: 00%</h3>
     <h3>Wspólne zainteresowania:</h3>
     <ul>
@@ -20,9 +20,9 @@
   </div>
   <div class="right">
     <h2>{{user.firstName + " " + user.lastName}}</h2>
-    <p>20 lat, Kielce</p>
+    <p>{{user.age}} lat, {{user.city}}</p>
     <h3>Opis</h3>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates reiciendis inventore in. Eligendi, fugiat delectus harum ipsam officia quos facilis nostrum illum totam, nobis fuga iste architecto incidunt dolores at!</p>
+    <p>{{user.description}}</p>
   </div>
 </div>
 <button (click)="onHotClicked()" class="swipe-action hot">

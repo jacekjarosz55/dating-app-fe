@@ -17,3 +17,7 @@
 }
 
 
+.user-short-info img {
+  border-radius: var(--radius);
+}
+

@@ -41,14 +41,52 @@
   </div>
 
   <div class="form-group">
-    <label for="fbLinkInput">
+    <label for="ageInput">
+        Wiek:
+    </label>
+    <input
+      type="text"
+      id="ageInput"
+      name="age"
+      formControlName="age"
+    >
+  </div>
+
+
+  <div class="form-group">
+    <label for="cityInput">
+        Miasto:
+    </label>
+    <input
+      type="text"
+      id="cityInput"
+      name="city"
+      formControlName="city"
+    >
+  </div>
+
+  <div class="form-group">
+    <label for="emailInput">
+        E-mail:
+    </label>
+    <input
+      type="text"
+      id="emailInput"
+      name="email"
+      formControlName="email"
+    >
+  </div>
+
+
+  <div class="form-group">
+    <label for="facebookUrlInput">
         Link do FB:
     </label>
     <input
       type="text"
-      id="fbLinkInput"
-      name="fbLink"
-      formControlName="fbLink"
+      id="facebookUrlInput"
+      name="facebookUrl"
+      formControlName="facebookUrl"
     >
   </div>
 
@@ -65,6 +103,19 @@
   </div>
 
   <div class="form-group">
+    <label for="descriptionInput">
+        Opisz siebie:
+    </label>
+    <textarea
+      id="descriptionInput"
+      maxlength="512"
+      rows="20"
+      name="description"
+      formControlName="description"
+    ></textarea>
+  </div>
+
+  <div class="form-group">
     <label for="passwordInput">
         Hasło:
     </label>
@@ -76,14 +127,16 @@
     >
   </div>
 
-  <!-- hobbies here -->
-  <div class="form-group">
-    <ul>
-      @for(hobby of (hobbies$ | async); track hobby.id) {
-        <li>{{hobby.name}}</li>
-      }
-    </ul>
-  </div>
-
-  <button class="button-primary" style="align-self: center; font-size: 1em;" type="submit" [disabled]="this.signupForm.invalid">Stwórz konto!</button>
+  <label>Wybierz hobby:</label>
+  <ul class="hobby-selector">
+  @for(hobby of (hobbies$ | async); track hobby.id) {
+    <li>
+        <label class="hobby-check">
+          {{hobby.name}}
+          <input type="checkbox" (ngValue)="hobby" (change)="toggleHobby(hobby)">
+        </label>
+    </li>
+  }
+  </ul>
+  <button class="button-primary" style="align-self: center; font-size: 1em;" type="submit" [disabled]="signupForm.invalid || hobbiesInvalid">Stwórz konto!</button>
 </form>

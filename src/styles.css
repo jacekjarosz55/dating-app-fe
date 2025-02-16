@@ -42,7 +42,7 @@ body {
   display: block;
 }
 
-input {
+input[type="text"], input[type="password"], textarea {
   appearance: none;
   border: 2px solid;
   background: var(--main-bg);
@@ -50,6 +50,10 @@ input {
   font-family: var(--font-family);
   border-radius: var(--radius);
   padding: 0.2rem 1rem;
+}
+
+textarea {
+  resize: vertical;
 }
 
 button, .link-button {
@@ -111,3 +115,6 @@ button[disabled]:hover {
   border-color: var(--main-fg);
 }
 
+.user-photo {
+  border-radius: var(--radius);
+}

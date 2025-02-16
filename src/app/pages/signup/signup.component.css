@@ -8,5 +8,23 @@ h2 {
   margin-right: auto;
 }
 
+.hobby-selector {
+  list-style-type: none;
+  margin: 0;
+  padding: 0rem;
+  display: flex;
+  gap: 0.5rem;
+}
 
+
+.hobby-check {
+  border: 2px solid;
+  padding: 0.4em;
+  border-radius: var(--radius);
+}
+
+.hobby-check:has(input:checked) {
+  background-color: var(--main-fg);
+  color: var(--main-bg);
+}
 

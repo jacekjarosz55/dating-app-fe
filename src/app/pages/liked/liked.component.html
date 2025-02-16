@@ -1,12 +1,15 @@
 <div style="padding: 1em;">
-  <h2>Oto wybrane przez ciebie osoby:</h2>
+  @if(related$ | async; as related) {
+  <h2>Match</h2>
   <div class="users-grid">
-    @for (user of (likedUsers$ | async); track user.id) {
+    @for (user of related.matched; track user.id) {
     <div class="user-short-info">
-      <img [src]="user.profilePicture" alt="user photo">
+      <button class="secondary" style="margin-bottom: 0.5em">usuń</button>
+      <img [src]="user.profilePicture" src-fallback="/missing.png" width="200" height="200" alt="user photo">
       <h3>{{user.firstName + ' ' + user.lastName}}</h3>
-      <a [href]="user.profilePicture">Link do FB</a>
+      <a [href]="user.facebookUrl">Link do FB</a>
     </div>
     }
   </div>
+  }
 </div>
